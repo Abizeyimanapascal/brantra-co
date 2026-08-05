@@ -6,10 +6,11 @@
 }
 
 
+/* ============ NAVBAR ============ */
+
 #mainNavbar {
 
-    transition: .4s ease;
-    color: white;
+    transition: background .4s ease, padding .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
 
     padding: 18px 0;
 
@@ -19,53 +20,76 @@
 
 #mainNavbar.scrolled {
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+    box-shadow: 0 5px 24px rgba(15, 23, 42, .08);
 
-    padding: 12px 0;
-    color: white;
+    padding: 10px 0;
 
 }
 
 .logo {
 
     width: 55px;
+    transition: width .3s ease;
 
 }
 
+#mainNavbar.scrolled .logo {
+
+    width: 46px;
+
+}
+
+/* Brand text swaps white (over the blue hero) -> primary blue (once scrolled) */
 .navbar-brand {
 
     font-weight: 700;
-
     font-size: 1.35rem;
+
+}
+
+.brand-text {
+
+    color: #ffffff;
+    transition: color .3s ease;
+
+}
+
+#mainNavbar.scrolled .brand-text {
 
     color: var(--primary);
-}
-
-.navbar-brand.scrolled {
-
-    font-weight: 700;
-
-    font-size: 1.35rem;
 
 }
 
+/* Nav links: white on the blue gradient, dark once the bar turns white */
 .navbar-nav .nav-link {
 
     font-weight: 500;
-
     margin: 0 10px;
-
     position: relative;
+    color: rgba(255, 255, 255, .92);
+    transition: color .3s ease;
 
-    transition: .3s;
+}
+
+#mainNavbar.scrolled .navbar-nav .nav-link {
+
+    color: #1e293b;
 
 }
 
 .navbar-nav .nav-link:hover,
-
 .navbar-nav .nav-link.active {
+
+    color: #ffffff;
+
+}
+
+#mainNavbar.scrolled .navbar-nav .nav-link:hover,
+#mainNavbar.scrolled .navbar-nav .nav-link.active {
 
     color: var(--primary);
 
@@ -74,25 +98,23 @@
 .navbar-nav .nav-link::after {
 
     content: "";
-
     position: absolute;
-
     left: 0;
-
     bottom: -5px;
-
     width: 0;
-
     height: 2px;
+    background: #ffffff;
+    transition: width .3s ease, background-color .3s ease;
+
+}
+
+#mainNavbar.scrolled .navbar-nav .nav-link::after {
 
     background: var(--primary);
-
-    transition: .3s;
 
 }
 
 .navbar-nav .nav-link:hover::after,
-
 .navbar-nav .nav-link.active::after {
 
     width: 100%;
@@ -102,134 +124,196 @@
 .navbar .btn {
 
     border-radius: 30px;
-
     padding: 10px 24px;
-
     font-weight: 600;
 
 }
 
-@media(max-width:991px) {
+/* Quote CTA: ghost/light on the blue bar, solid brand color once scrolled */
+.quote-btn {
 
-    #mainNavbar {
+    background: #ffffff;
+    color: var(--primary);
+    border: 2px solid transparent;
+    transition: background .3s ease, color .3s ease, border-color .3s ease, transform .2s ease;
 
-        background: #fff;
+}
 
-        box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+.quote-btn:hover {
+
+    background: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+
+}
+
+#mainNavbar.scrolled .quote-btn {
+
+    background: var(--primary);
+    color: #ffffff;
+
+}
+
+#mainNavbar.scrolled .quote-btn:hover {
+
+    background: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+
+}
+
+/* Toggler lines: white on blue, dark once scrolled */
+.navbar-toggler {
+
+    border: none;
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+
+}
+
+.navbar-toggler:focus {
+
+    box-shadow: none;
+
+}
+
+.animated-toggler {
+
+    width: 26px;
+    height: 20px;
+    position: relative;
+    display: block;
+
+}
+
+.animated-toggler span {
+
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 30px;
+    transition: all .35s ease, background-color .3s ease;
+
+}
+
+#mainNavbar.scrolled .animated-toggler span {
+
+    background: var(--dark);
+
+}
+
+/* Top Line */
+.animated-toggler span:nth-child(1) {
+    top: 0;
+}
+
+/* Middle Line */
+.animated-toggler span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Bottom Line */
+.animated-toggler span:nth-child(3) {
+    bottom: 0;
+}
+
+/* ===== X Animation ===== */
+.navbar-toggler.active .animated-toggler span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.navbar-toggler.active .animated-toggler span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggler.active .animated-toggler span:nth-child(3) {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+/* ============ RESPONSIVE (small / medium screens) ============ */
+@media (max-width: 991px) {
+
+    /* The dropdown panel gets its own solid white card so its links are
+       always legible, regardless of whether the bar behind it is the
+       blue gradient or the scrolled white state */
+    .navbar-collapse {
+
+        margin-top: 16px;
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 15px 35px rgba(15, 23, 42, .18);
 
     }
 
-    .navbar-collapse {
+    .navbar-collapse .nav-link {
 
-        margin-top: 20px;
+        color: #1e293b !important;
 
-        text-align: center;
+    }
+
+    .navbar-collapse .nav-link::after {
+
+        background: var(--primary) !important;
+
+    }
+
+    .navbar-collapse .nav-link:hover,
+    .navbar-collapse .nav-link.active {
+
+        color: var(--primary) !important;
 
     }
 
     .navbar-nav .nav-link {
 
-        margin: 12px 0;
+        margin: 10px 0;
 
     }
 
-    .navbar .btn {
+    .navbar .quote-btn {
 
-        margin-top: 15px;
-
+        margin-top: 12px;
         width: 100%;
+        background: var(--primary);
+        color: #ffffff;
 
     }
 
-    .navbar-toggler {
+    .navbar .quote-btn:hover {
 
-        border: none;
-        padding: 0;
-        width: 42px;
-        height: 42px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: none !important;
+        background: transparent;
+        color: var(--primary);
+        border-color: var(--primary);
 
     }
 
-    .navbar-toggler:focus {
+}
 
-        box-shadow: none;
+@media (max-width: 420px) {
 
-    }
+    .navbar-brand .brand-text {
 
-    .animated-toggler {
-
-        width: 28px;
-        height: 22px;
-        position: relative;
-        display: block;
+        font-size: 1.1rem;
 
     }
 
-    .animated-toggler span {
+    .logo {
 
-        position: absolute;
-        left: 0;
-
-        width: 100%;
-        height: 3px;
-
-        background: var(--dark);
-
-        border-radius: 30px;
-
-        transition: all .35s ease;
-
-    }
-
-    /* Top Line */
-
-    .animated-toggler span:nth-child(1) {
-
-        top: 0;
-
-    }
-
-    /* Middle Line */
-
-    .animated-toggler span:nth-child(2) {
-
-        top: 50%;
-        transform: translateY(-50%);
-
-    }
-
-    /* Bottom Line */
-
-    .animated-toggler span:nth-child(3) {
-
-        bottom: 0;
-
-    }
-
-    /* ===== X Animation ===== */
-
-    .navbar-toggler.active .animated-toggler span:nth-child(1) {
-
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-
-    }
-
-    .navbar-toggler.active .animated-toggler span:nth-child(2) {
-
-        opacity: 0;
-
-    }
-
-    .navbar-toggler.active .animated-toggler span:nth-child(3) {
-
-        bottom: auto;
-        top: 50%;
-        transform: translateY(-50%) rotate(-45deg);
+        width: 46px;
 
     }
 
