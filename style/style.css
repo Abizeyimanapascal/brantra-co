@@ -13,7 +13,7 @@
 
     padding: 18px 0;
 
-    background: linear-gradient(15deg, #0a3d91, #2f80ed);
+    background: linear-gradient(15deg, #910a0a, #2f80ed);
 
 }
 
@@ -235,10 +235,13 @@
 
 }
 
+/* FIX: hero background is now protected from being overridden by any
+   Bootstrap bg-* utility class, since bg-info has been removed from the
+   markup and this rule carries !important as a safety net */
 .hero {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(135deg, #0a3d91, #2f80ed);
+    background: linear-gradient(135deg, #0a3d91, #2f80ed) !important;
     color: white;
 }
 
