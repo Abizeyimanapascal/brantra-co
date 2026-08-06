@@ -1369,20 +1369,21 @@
 
                                 <div class="contact-form">
 
-                                    <form name="contact" method="POST" netlify>
+                                    <form name="contact" method="POST" data-netlify="true">
+                                        <input type="hidden" name="form-name" value="contact">
 
                                         <div class="row">
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="text" class="form-control" placeholder="Full Name"
+                                                <input type="text" name="name" class="form-control" placeholder="Full Name"
                                                     required>
 
                                             </div>
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="email" class="form-control" placeholder="Email Address"
+                                                <input type="email" name="email" class="form-control" placeholder="Email Address"
                                                     required>
 
                                             </div>
@@ -1393,13 +1394,13 @@
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="tel" class="form-control" placeholder="Phone Number">
+                                                <input type="tel" name="telephone" class="form-control" placeholder="Phone Number">
 
                                             </div>
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="text" class="form-control" placeholder="Subject">
+                                                <input type="text" name="subject" class="form-control" placeholder="Subject">
 
                                             </div>
 
@@ -1407,12 +1408,12 @@
 
                                         <div class="mb-3">
 
-                                            <textarea class="form-control" rows="6" placeholder="Your Message"
+                                            <textarea class="form-control" name="message" rows="6" placeholder="Your Message"
                                                 required></textarea>
 
                                         </div>
 
-                                        <button class="btn btn-primary px-5 py-3">
+                                        <button type="submit" class="btn btn-primary px-5 py-3">
 
                                             <i class="bi bi-send-fill me-2"></i>
 
