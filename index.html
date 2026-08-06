@@ -157,7 +157,8 @@
 
                                 <div class="about-image position-relative">
 
-                                    <img src="img/large-format-printer.jpg" class="img-fluid rounded-4 shadow" alt="Brantra Co. Ltd">
+                                    <img src="img/large-format-printer.jpg" class="img-fluid rounded-4 shadow"
+                                        alt="Brantra Co. Ltd">
 
                                     <div class="experience-box">
 
@@ -515,7 +516,8 @@
                             <!-- Project 1 -->
                             <div class="col-lg-4 col-md-6">
                                 <div class="card project-card border-0 shadow-sm h-100">
-                                    <img src="img/bpr_project.png" class="card-img-top" alt="Corporate Branding Project">
+                                    <img src="img/bpr_project.png" class="card-img-top"
+                                        alt="Corporate Branding Project">
                                     <div class="card-body">
                                         <span class="badge bg-primary mb-2">Corporate Branding Project</span>
                                         <h5 class="card-title">BPR Agendas and Pens Project</h5>
@@ -535,8 +537,7 @@
                             <!-- Project 2 -->
                             <div class="col-lg-4 col-md-6">
                                 <div class="card project-card border-0 shadow-sm h-100">
-                                    <img src="img/wedding_branding.png" class="card-img-top"
-                                        alt="Wedding Branding">
+                                    <img src="img/wedding_branding.png" class="card-img-top" alt="Wedding Branding">
                                     <div class="card-body">
                                         <span class="badge bg-primary mb-2">Wedding Branding</span>
                                         <h5 class="card-title">Wedding Branding</h5>
@@ -743,8 +744,7 @@
                                     <div class="pt-4">
                                         <div
                                             class="team-profile-placeholder mx-auto d-flex align-items-center justify-content-center rounded-circle">
-                                            <img src="img/kembabazivanice.PNG"
-                                                class="rounded-circle shadow border">
+                                            <img src="img/kembabazivanice.PNG" class="rounded-circle shadow border">
                                         </div>
                                     </div>
 
@@ -766,7 +766,7 @@
                                     </div>
 
                                     <div class="card-footer bg-white border-0">
-                                        
+
                                     </div>
 
                                 </div>
@@ -813,7 +813,8 @@
                                     <div class="pt-4">
                                         <div
                                             class="team-profile-placeholder mx-auto d-flex align-items-center justify-content-center rounded-circle">
-                                            <img src="img/Ngirabakunziemmanuel.jpeg" class="rounded-circle shadow border">
+                                            <img src="img/Ngirabakunziemmanuel.jpeg"
+                                                class="rounded-circle shadow border">
                                         </div>
                                     </div>
 
@@ -826,7 +827,8 @@
                                         </small>
 
                                         <p class="text-muted mt-3">
-                                            manage and maintain production equipment to ensure manufacturing lines run efficiently and safely
+                                            manage and maintain production equipment to ensure manufacturing lines run
+                                            efficiently and safely
                                         </p>
 
                                     </div>
@@ -1194,20 +1196,21 @@
 
                                 <div class="contact-form">
 
-                                    <form name="contact" netlify>
+                                    <form name="contact" method="POST" data-netlify="true">
+                                        <input type="hidden" name="form-name" value="contact">
 
                                         <div class="row">
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="text" class="form-control" placeholder="Full Name"
+                                                <input type="text" name="name" class="form-control" placeholder="Full Name"
                                                     required>
 
                                             </div>
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="email" class="form-control" placeholder="Email Address"
+                                                <input type="email" name="address" class="form-control" placeholder="Email Address"
                                                     required>
 
                                             </div>
@@ -1218,13 +1221,13 @@
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="tel" class="form-control" placeholder="Phone Number">
+                                                <input type="tel" name="telephone" class="form-control" placeholder="Phone Number">
 
                                             </div>
 
                                             <div class="col-md-6 mb-3">
 
-                                                <input type="text" class="form-control" placeholder="Subject">
+                                                <input type="text" name="subject" class="form-control" placeholder="Subject">
 
                                             </div>
 
@@ -1232,7 +1235,7 @@
 
                                         <div class="mb-3">
 
-                                            <textarea class="form-control" rows="6" placeholder="Your Message"
+                                            <textarea class="form-control" name="message" rows="6" placeholder="Your Message"
                                                 required></textarea>
 
                                         </div>
@@ -1400,15 +1403,15 @@
 
                     <div class="social-links">
 
-                        <a ><i class="bi bi-facebook"></i></a>
+                        <a><i class="bi bi-facebook"></i></a>
 
-                        <a ><i class="bi bi-twitter-x"></i></a>
+                        <a><i class="bi bi-twitter-x"></i></a>
 
-                        <a ><i class="bi bi-linkedin"></i></a>
+                        <a><i class="bi bi-linkedin"></i></a>
 
-                        <a ><i class="bi bi-instagram"></i></a>
+                        <a><i class="bi bi-instagram"></i></a>
 
-                        <a ><i class="bi bi-youtube"></i></a>
+                        <a><i class="bi bi-youtube"></i></a>
 
                     </div>
 
@@ -1443,19 +1446,24 @@
                     <ul class="footer-links">
 
                         <li><i class="bi bi-printer-fill"></i>
-                             <a href="#services">Commercial Printing</a></li>
+                            <a href="#services">Commercial Printing</a>
+                        </li>
 
                         <li><i class="bi bi-laptop-fill"></i>
-                             <a href="#services">Corporate Branding</a></li>
+                            <a href="#services">Corporate Branding</a>
+                        </li>
 
                         <li><i class="bi bi-calendar-heart-fill"></i>
-                             <a href="#services">Wedding & Event Branding</a></li>
+                            <a href="#services">Wedding & Event Branding</a>
+                        </li>
 
                         <li><i class="bi bi-printer"></i>
-                             <a href="#services">Large Format Printing</a></li>
+                            <a href="#services">Large Format Printing</a>
+                        </li>
 
                         <li><i class="bi bi-printer-fill"></i>
-                             <a href="#services">Special Printing & Finishing</a></li>
+                            <a href="#services">Special Printing & Finishing</a>
+                        </li>
 
                     </ul>
 
@@ -1689,7 +1697,7 @@
 
             });
 
-        }, { threshold: 0.5 });
+        }, {threshold: 0.5});
 
         counters.forEach(counter => observer.observe(counter));
 
