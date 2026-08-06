@@ -1,8 +1,78 @@
 :root {
     --primary: #2b79e4;
     --secondary: #2ea3f2;
+    --accent: #ffb703;
     --dark: #0f172a;
     --light: #f8f9fa;
+    --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.fw-bold {
+    font-family: var(--font-heading);
+}
+
+/* ============ SMOOTH SCROLLING ============ */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+/* ============ SCROLL REVEAL (fade up, once) ============ */
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered timing for cards that sit side by side in a row */
+.row > .reveal-up:nth-child(1) { transition-delay: 0s; }
+.row > .reveal-up:nth-child(2) { transition-delay: .1s; }
+.row > .reveal-up:nth-child(3) { transition-delay: .2s; }
+.row > .reveal-up:nth-child(4) { transition-delay: .3s; }
+.row > .reveal-up:nth-child(5) { transition-delay: .4s; }
+.row > .reveal-up:nth-child(6) { transition-delay: .5s; }
+
+/* Respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ============ GLOBAL BUTTON HOVER ============ */
+
+.btn {
+    transition: transform .25s ease, box-shadow .25s ease,
+        background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .15);
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
 
 
@@ -321,20 +391,108 @@
 
 /* FIX: hero background is now protected from being overridden by any
    Bootstrap bg-* utility class, since bg-info has been removed from the
-   markup and this rule carries !important as a safety net */
+   markup and this rule carries !important as a safety net.
+   Modernized: uses an existing site photo behind the gradient for texture,
+   with soft decorative blurred shapes for depth. */
 .hero {
+    position: relative;
+    overflow: hidden;
     text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(135deg, #0a3d91, #2f80ed) !important;
+    padding: 110px 20px 90px;
+    background:
+        linear-gradient(135deg, rgba(10, 61, 145, .92), rgba(47, 128, 237, .90)),
+        url('../img/large-format-printer.jpg') center / cover no-repeat !important;
     color: white;
+}
+
+.hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-shape-1 {
+    width: 320px;
+    height: 320px;
+    background: rgba(255, 183, 3, .25);
+    top: -80px;
+    left: -60px;
+}
+
+.hero-shape-2 {
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, .15);
+    bottom: -90px;
+    right: -40px;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    padding: 6px 18px;
+    margin-bottom: 18px;
+    border-radius: 30px;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    color: var(--dark);
+    background: var(--accent);
 }
 
 .hero h1 {
     transition: .5s ease;
+    font-weight: 700;
 }
 
 .hero h1:hover {
     transform: translateY(-8px);
+}
+
+.hero-trust {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, .25);
+}
+
+.hero-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-trust-item strong {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.hero-trust-item span {
+    font-size: .85rem;
+    color: rgba(255, 255, 255, .85);
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 100px 16px 70px;
+    }
+
+    .hero-trust {
+        gap: 24px;
+    }
 }
 
 
@@ -345,6 +503,20 @@
     letter-spacing: 2px;
     font-size: .9rem;
 
+}
+
+/* Small pill label used above section headings for visual hierarchy,
+   consistent with the hero's eyebrow badge */
+.section-eyebrow {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 30px;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(43, 121, 228, .1);
 }
 
 .about-title {
@@ -408,9 +580,9 @@
 
     right: 30px;
 
-    background: var(--primary);
+    background: var(--accent);
 
-    color: #fff;
+    color: var(--dark);
 
     padding: 20px 30px;
 
@@ -448,37 +620,94 @@
 
 }
 
-.stat-card {
-    transition: .3s ease;
-    border-radius: 15px;
+/* Full-width gradient banner replacing the old plain stat cards, for a
+   stronger visual break between the About and Services sections */
+.stats-banner {
+    background: linear-gradient(120deg, #0a3d91, #123a7a 50%, #2f80ed);
+    color: #fff;
 }
 
-.stat-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .15) !important;
+.stat-banner-item i {
+    font-size: 2.4rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
-.stat-card i {
-    color: #2b79e4;
+.stat-banner-item h2 {
+    font-size: 2.6rem;
+    margin: 6px 0 4px;
+    color: #fff;
 }
 
-.stat-card h2 {
-    font-size: 2.7rem;
+.stat-banner-item p {
+    color: rgba(255, 255, 255, .8);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-size: .85rem;
 }
 
+@media (min-width: 768px) {
+    .stat-banner-item {
+        position: relative;
+    }
+
+    /* Vertical divider between stats, skipped on the first item */
+    .col-lg-3:not(:first-child) .stat-banner-item::before {
+        content: "";
+        position: absolute;
+        left: -2px;
+        top: 10%;
+        height: 80%;
+        width: 1px;
+        background: rgba(255, 255, 255, .2);
+    }
+}
+
+
+/* Perspective context so child cards can tilt in 3D */
+#services .row {
+    perspective: 1400px;
+}
 
 .service-card {
     border-radius: 15px;
-    transition: all .3s ease;
+    transition: transform .5s ease, box-shadow .5s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, .12) !important;
+    transform: translateY(-10px) rotateX(6deg) rotateY(-6deg);
+    box-shadow: 0 30px 50px rgba(10, 40, 90, .25) !important;
+}
+
+/* Raised 3D icon plate */
+.service-icon-3d {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #ffffff, #eaf2ff);
+    box-shadow:
+        8px 8px 18px rgba(15, 23, 42, .10),
+        -6px -6px 14px rgba(255, 255, 255, .9);
+    transform: translateZ(25px);
+    transition: transform .5s ease, box-shadow .5s ease;
+}
+
+.service-card:hover .service-icon-3d {
+    transform: translateZ(55px) rotate(-4deg);
+    box-shadow:
+        12px 14px 26px rgba(10, 40, 90, .22),
+        -6px -6px 16px rgba(255, 255, 255, .95);
 }
 
 .service-icon {
-    font-size: 3.5rem;
+    font-size: 2.6rem;
     color: #2b79e4;
     transition: .3s;
 }
@@ -490,6 +719,7 @@
 .service-card h4 {
     font-weight: 600;
     margin-top: 15px;
+    transform: translateZ(10px);
 }
 
 .service-card p {
@@ -505,6 +735,17 @@
 }
 .service-card:hover img {
     transform: scale(1.08);
+}
+
+/* Flatten the 3D tilt on touch devices, where hover can't be controlled by a cursor */
+@media (hover: none) {
+    .service-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .service-card:hover .service-icon-3d {
+        transform: none;
+    }
 }
 
 
@@ -525,10 +766,28 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
 }
 
-.choose-box i {
-    font-size: 2rem;
-    color: #2b79e4;
-    min-width: 50px;
+.choose-icon-plate {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #ffffff, #eaf2ff);
+    box-shadow:
+        5px 5px 12px rgba(15, 23, 42, .08),
+        -4px -4px 10px rgba(255, 255, 255, .9);
+    transition: transform .3s ease;
+}
+
+.choose-box:hover .choose-icon-plate {
+    transform: translateY(-3px) rotate(-4deg);
+}
+
+.choose-icon-plate i {
+    font-size: 1.5rem;
+    color: var(--primary);
 }
 
 .choose-box h5 {
@@ -604,16 +863,29 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
 }
 
-.industry-card i {
-    font-size: 3rem;
-    color: #2ea3f2;
-    margin-bottom: 20px;
-    transition: .3s;
+.industry-icon-plate {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #ffffff, #eaf2ff);
+    box-shadow:
+        6px 6px 14px rgba(15, 23, 42, .08),
+        -5px -5px 12px rgba(255, 255, 255, .9);
+    transition: transform .35s ease;
 }
 
-.industry-card:hover i {
+.industry-card:hover .industry-icon-plate {
+    transform: translateY(-4px) rotate(-4deg);
+}
+
+.industry-icon-plate i {
+    font-size: 2rem;
     color: var(--primary);
-    transform: scale(1.1);
+    transition: .3s;
 }
 
 .industry-card h5 {
@@ -633,6 +905,24 @@
     border-radius: 18px;
     overflow: hidden;
     transition: .35s ease;
+    position: relative;
+}
+
+.team-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s ease;
+}
+
+.team-card:hover::before {
+    transform: scaleX(1);
 }
 
 .team-card:hover {
@@ -688,10 +978,25 @@
 
 .testimonial-card {
 
+    position: relative;
     background: #fff;
     padding: 45px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+.testimonial-card::before {
+
+    content: "\201C";
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(43, 121, 228, .12);
+    font-weight: 700;
 
 }
 
@@ -1006,9 +1311,22 @@
 
 .footer-section {
 
+    position: relative;
     background: #0f172a;
 
     color: #cbd5e1;
+
+}
+
+.footer-section::before {
+
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
 
 }
 
